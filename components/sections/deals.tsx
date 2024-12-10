@@ -17,6 +17,37 @@ interface Deal {
   source: string
 }
 
+// Mock data for local development
+const MOCK_DEALS = [
+  {
+    name: "Samsung 65-inch QLED TV",
+    category: "Electronics",
+    discount: 30,
+    original_price: 999.99,
+    discounted_price: 699.99,
+    url: "https://oman.sharafdg.com/tv-deals",
+    source: "Sharaf DG"
+  },
+  {
+    name: "Apple iPhone 15 Pro",
+    category: "Electronics",
+    discount: 15,
+    original_price: 499.99,
+    discounted_price: 424.99,
+    url: "https://amazon.ae/iphone",
+    source: "Amazon UAE"
+  },
+  {
+    name: "Nike Air Max 2024",
+    category: "Fashion",
+    discount: 40,
+    original_price: 200,
+    discounted_price: 120,
+    url: "https://www.namshi.com/nike-deals",
+    source: "Namshi"
+  }
+]
+
 export function DealsSection() {
   const [deals, setDeals] = React.useState<Deal[]>([])
   const [loading, setLoading] = React.useState(true)
@@ -24,9 +55,15 @@ export function DealsSection() {
   React.useEffect(() => {
     async function fetchDeals() {
       try {
-        const response = await fetch('/.netlify/functions/getDeals')
-        const data = await response.json()
-        setDeals(data.deals || [])
+        if (process.env.NODE_ENV === 'development') {
+          // Use mock data in development
+          setDeals(MOCK_DEALS)
+        } else {
+          // Use Netlify function in production
+          const response = await fetch('/.netlify/functions/getDeals')
+          const data = await response.json()
+          setDeals(data.deals || [])
+        }
       } catch (error) {
         console.error('Error fetching deals:', error)
       } finally {
