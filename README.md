@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Oman Deals Scraper
 
-## Getting Started
+A Python-based web scraping tool to collect deals and discounts from various Omani e-commerce and retail websites.
 
-First, run the development server:
+## Features
 
+- Scrapes deals from multiple sources (Amazon, Carrefour, etc.)
+- Extracts detailed deal information (price, discount, expiry date)
+- Categorizes deals by type (Electronics, Groceries, etc.)
+- Sorts deals by discount percentage
+- Saves results in JSON format
+- Handles dynamic content using Selenium
+- Implements ethical scraping practices
+
+## Setup
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd oman-deals-scraper
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Install Chrome WebDriver (required for Selenium)
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+Run the main script:
+```bash
+python main.py
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The script will:
+1. Scrape deals from all configured sources
+2. Sort and categorize the deals
+3. Save results in the `data` directory
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Results are saved in two formats:
+- By category: `data/deals_<category>_<timestamp>.json`
+- Top deals: `data/top_deals_<timestamp>.json`
 
-## Deploy on Vercel
+## Adding New Scrapers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Create a new scraper in `scrapers/sites/`
+2. Inherit from `BaseScraper` class
+3. Implement the `scrape()` method
+4. Add the scraper to the list in `main.py`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+MIT License
