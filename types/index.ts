@@ -35,6 +35,7 @@ export type Store = 'Carrefour' | 'Namshi' | 'SharafDG' | 'Noon' | 'Amazon';
 export interface Deal {
   id: string;
   title: string;
+  description: string;
   coordinates: {
     lat: number;
     lng: number;
