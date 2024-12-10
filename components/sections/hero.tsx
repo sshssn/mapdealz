@@ -36,109 +36,80 @@ const marqueeItems = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black pt-16">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-black/80 z-10" />
-        <div className="relative w-full h-full transform scale-[0.7]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute w-full h-full object-cover"
-            preload="auto"
-            poster="/video-poster.jpg"
+    <div className="relative w-full overflow-hidden">
+      {/* Hero Content */}
+      <div className="container mx-auto px-4 py-12 md:py-24">
+        <div className="max-w-[90%] md:max-w-[80%] mx-auto text-center space-y-8">
+          <MotionH1
+            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-violet-400 via-pink-300 to-blue-400 text-transparent bg-clip-text"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <source src="/gradientback.mp4" type="video/mp4" />
-          </video>
+            Discover Amazing Deals Near You
+          </MotionH1>
+
+          <MotionDiv
+            className="text-lg md:text-xl text-muted-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Find the best local deals, discounts, and offers in your area
+          </MotionDiv>
+
+          {/* Search Bar */}
+          <MotionDiv
+            className="max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-600/30 via-pink-500/30 to-blue-500/30 rounded-full blur-xl"></div>
+              <div className="relative flex gap-2">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Input 
+                    type="text"
+                    placeholder="Search for deals..."
+                    className="w-full pl-10 bg-background/50 backdrop-blur-sm border-white/10"
+                  />
+                </div>
+                <Button className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20">
+                  <Navigation className="w-4 h-4 mr-2" />
+                  Near Me
+                </Button>
+              </div>
+            </div>
+          </MotionDiv>
+
+          {/* Stats */}
+          <MotionDiv
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="space-y-1 backdrop-blur-sm bg-white/5 rounded-lg p-4 border border-white/10">
+              <div className="text-2xl md:text-3xl font-bold">500+</div>
+              <div className="text-sm text-muted-foreground">Active Deals</div>
+            </div>
+            <div className="space-y-1 backdrop-blur-sm bg-white/5 rounded-lg p-4 border border-white/10">
+              <div className="text-2xl md:text-3xl font-bold">50+</div>
+              <div className="text-sm text-muted-foreground">Local Stores</div>
+            </div>
+            <div className="space-y-1 backdrop-blur-sm bg-white/5 rounded-lg p-4 border border-white/10">
+              <div className="text-2xl md:text-3xl font-bold">10k+</div>
+              <div className="text-sm text-muted-foreground">Happy Users</div>
+            </div>
+            <div className="space-y-1 backdrop-blur-sm bg-white/5 rounded-lg p-4 border border-white/10">
+              <div className="text-2xl md:text-3xl font-bold">30%</div>
+              <div className="text-sm text-muted-foreground">Avg. Savings</div>
+            </div>
+          </MotionDiv>
         </div>
       </div>
-
-      {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-        <MotionDiv
-          className="max-w-3xl mx-auto text-center space-y-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <MotionH1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary/90 via-purple-500 to-pink-600"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Discover Amazing Deals{" "}
-            <span className="text-primary">
-              Near You
-            </span>
-          </MotionH1>
-          
-          <MotionDiv
-            className="relative max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-600/5 rounded-2xl blur-xl" />
-            <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-lg">
-              <p className="text-base text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-pink-500 to-orange-500 whitespace-nowrap overflow-hidden text-ellipsis">
-                Find the best local deals and save money while supporting your community
-              </p>
-            </div>
-          </MotionDiv>
-
-          <MotionDiv
-            className="flex flex-col sm:flex-row items-center gap-4 max-w-xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <div className="relative flex-1 w-full">
-              <ShoppingBag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search for deals..."
-                className="pl-9 pr-4 bg-background/50 backdrop-blur-sm border-primary/20"
-              />
-            </div>
-            <div className="relative flex-1 w-full">
-              <Navigation className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Enter your location..."
-                className="pl-9 pr-4 bg-background/50 backdrop-blur-sm border-primary/20"
-              />
-            </div>
-            <Button 
-              size="lg" 
-              className="w-full sm:w-auto bg-gradient-to-r from-primary via-purple-500 to-pink-600 hover:from-primary/90 hover:via-purple-500/90 hover:to-pink-600/90"
-            >
-              <Search className="w-4 h-4 mr-2" />
-              Find Deals
-            </Button>
-          </MotionDiv>
-
-          <MotionDiv
-            className="flex items-center justify-center gap-8 pt-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            {[
-              { label: "Active Deals", value: "2,500+" },
-              { label: "Happy Users", value: "10,000+" },
-              { label: "Local Businesses", value: "500+" }
-            ].map(({ label, value }) => (
-              <div key={label} className="text-center">
-                <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-600">{value}</div>
-                <div className="text-xs text-muted-foreground">{label}</div>
-              </div>
-            ))}
-          </MotionDiv>
-        </MotionDiv>
-      </div>
-    </section>
+    </div>
   )
 } 

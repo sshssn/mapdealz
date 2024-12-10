@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Logo } from "@/components/ui/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { LanguageSwitch } from "@/components/language-switch"
 import { Button } from "@/components/ui/button"
 import { MapPin } from "lucide-react"
 
@@ -14,6 +15,7 @@ export const Header: React.FC = () => {
             <MapPin className="w-4 h-4 mr-2" />
             Share Location
           </Button>
+          <LanguageSwitch />
           <ThemeToggle />
         </div>
       </div>
