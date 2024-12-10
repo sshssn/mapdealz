@@ -77,7 +77,7 @@ export const useStore = create<DealzMapStore>((set, get) => ({
 
     try {
       const dealService = DealService.getInstance()
-      const deals = await dealService.searchDeals(query, userLocation)
+      const deals = await dealService.searchDeals(query, userLocation || undefined)
       setDeals(deals)
     } catch (error) {
       setError('Failed to search deals')

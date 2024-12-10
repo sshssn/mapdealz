@@ -51,6 +51,8 @@ export interface Deal {
   image: string;
   store: Store;
   category: DealCategory;
+  url: string;
+  storeLogo: string;
 }
 
 export interface DealFilter {

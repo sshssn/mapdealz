@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, HTMLMotionProps } from "framer-motion"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -77,7 +77,6 @@ export const CategoryShowcase = () => {
         {categories.slice(activeIndex, activeIndex + 4).map((category, index) => (
           <motion.div
             key={category.id}
-            as="div"
             className="group relative overflow-hidden rounded-2xl cursor-pointer h-[200px]"
             whileHover={{ scale: 1.02 }}
             initial={{ opacity: 0, y: 20 }}
