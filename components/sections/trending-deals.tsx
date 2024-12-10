@@ -192,7 +192,7 @@ export const TrendingDeals = () => {
                     </div>
                   </div>
                   <button
-                    className="backdrop-blur-md bg-white/20 px-3 py-1.5 rounded-full"
+                    className="backdrop-blur-md bg-white/20 px-3 py-1.5 rounded-full text-white hover:bg-white/30 transition-colors"
                     aria-label={`View deal for ${deal.title}`}
                   >
                     View Deal
