@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { Deal, DealCategory, Store } from '@/types'
+import { Deal, DealCategory } from '@/types'
 import { calculateDistance } from '@/lib/utils'
 
 // This would be replaced with actual API calls in production
@@ -11,24 +11,36 @@ const MOCK_DEALS: Deal[] = [
     price: {
       current: 9.99,
       original: 19.99,
-      currency: 'OMR',
+      currency: 'USD',
       discount: 50,
     },
     merchant: {
       id: 'pizza-express',
       name: 'Pizza Express',
       rating: 4.5,
+      totalReviews: 128,
       location: {
-        address: '123 Main St, San Francisco, USA'
-      }
+        lat: 37.7858,
+        lng: -122.4064,
+        address: '123 Main St',
+        city: 'San Francisco',
+        country: 'USA',
+      },
     },
     category: DealCategory.FOOD_DRINK,
+    tags: ['pizza', 'italian', 'dinner'],
+    images: [
+      {
+        thumbnail: '/images/deals/pizza-thumb.jpg',
+        full: '/images/deals/pizza-full.jpg',
+      },
+    ],
+    validUntil: '2024-03-31',
+    url: '/deals/pizza-express-50-off',
     coordinates: {
       lat: 37.7858,
       lng: -122.4064,
     },
-    image: '/images/deals/pizza-thumb.jpg',
-    store: 'Carrefour' as Store
   },
   {
     id: '2',
@@ -37,24 +49,36 @@ const MOCK_DEALS: Deal[] = [
     price: {
       current: 69.99,
       original: 99.99,
-      currency: 'OMR',
+      currency: 'USD',
       discount: 30,
     },
     merchant: {
       id: 'fashion-store',
       name: 'Fashion Store',
       rating: 4.2,
+      totalReviews: 89,
       location: {
-        address: '456 Market St, San Francisco, USA'
-      }
+        lat: 37.7868,
+        lng: -122.4074,
+        address: '456 Market St',
+        city: 'San Francisco',
+        country: 'USA',
+      },
     },
     category: DealCategory.SHOPPING,
+    tags: ['clothing', 'fashion', 'sale'],
+    images: [
+      {
+        thumbnail: '/images/deals/fashion-thumb.jpg',
+        full: '/images/deals/fashion-full.jpg',
+      },
+    ],
+    validUntil: '2024-03-31',
+    url: '/deals/fashion-store-sale',
     coordinates: {
       lat: 37.7868,
       lng: -122.4074,
     },
-    image: '/images/deals/fashion-thumb.jpg',
-    store: 'Namshi' as Store
   },
 ]
 
