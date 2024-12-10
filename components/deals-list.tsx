@@ -5,7 +5,9 @@ import { Tag, MapPin, Star, Search } from "lucide-react"
 import { useStore } from "@/lib/store"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DealCategory } from "@/types"
+import { DealCategory, Deal } from "@/types"
+import DealMap from "@/components/deal-map"
+import { DealCard } from "@/components/deal-card"
 
 const CATEGORIES = [
   { id: DealCategory.FOOD_DRINK, label: "Food & Drink" },
@@ -20,7 +22,7 @@ const CATEGORIES = [
 
 export const DealsList: React.FC = () => {
   const {
-    deals,
+    deals = [],
     userLocation,
     loading,
     error,
@@ -63,6 +65,24 @@ export const DealsList: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      <div className="space-y-2">
+        <h2 className="flex items-center gap-2 text-2xl font-bold">
+          <MapPin className="h-6 w-6 text-blue-500" />
+          <div>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Deals Near You
+            </span>
+            <p className="text-sm font-normal text-muted-foreground mt-1">
+              Discover the best local deals in your area
+            </p>
+          </div>
+        </h2>
+      </div>
+
+      <section className="relative">
+        <DealMap deals={deals} />
+      </section>
+
       <form onSubmit={handleSearch} className="space-y-2">
         <div className="flex gap-2">
           <Input
@@ -103,44 +123,11 @@ export const DealsList: React.FC = () => {
             No deals found. Try adjusting your search or filters.
           </div>
         ) : (
-          deals.map((deal) => (
-            <div
-              key={deal.id}
-              className="p-4 rounded-lg border bg-card hover:bg-accent/10 transition-colors cursor-pointer"
-            >
-              <div className="flex justify-between items-start">
-                <div className="space-y-1">
-                  <h3 className="font-semibold">{deal.title}</h3>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="w-4 h-4" />
-                    <span>{deal.merchant.location.address}</span>
-                    {deal.distance && (
-                      <>
-                        <span>•</span>
-                        <span>{deal.distance.toFixed(1)} km</span>
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 text-yellow-500">
-                  <Star className="w-4 h-4 fill-current" />
-                  <span className="text-sm font-medium">{deal.merchant.rating}</span>
-                </div>
-              </div>
-              <div className="mt-3 flex items-center gap-2">
-                <Tag className="w-4 h-4 text-primary" />
-                <span className="font-semibold text-primary">
-                  {deal.price.currency} {deal.price.current}
-                </span>
-                <span className="text-sm text-muted-foreground line-through">
-                  {deal.price.currency} {deal.price.original}
-                </span>
-                <span className="text-sm font-medium text-green-600 ml-auto">
-                  {deal.price.discount}% OFF
-                </span>
-              </div>
-            </div>
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {deals.map((deal) => (
+              <DealCard key={deal.id} deal={deal} />
+            ))}
+          </div>
         )}
       </div>
     </div>

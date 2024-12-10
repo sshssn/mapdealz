@@ -10,8 +10,6 @@ import {
   ShoppingBag,
   LogIn,
   UserPlus,
-  Sun,
-  Moon,
   X 
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -19,7 +17,6 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { useScrollPosition } from "@/hooks/use-scroll-position"
 import { Logo } from "@/components/ui/logo"
-import { useTheme } from "next-themes"
 import { AuthModal } from "@/components/auth/auth-modal"
 import { MotionComponentProps } from "@/lib/motion-types"
 
@@ -53,7 +50,6 @@ export function Header() {
   const [authMode, setAuthMode] = React.useState<"signin" | "signup" | null>(null)
   const scrollPosition = useScrollPosition()
   const isScrolled = scrollPosition > 0
-  const { theme, setTheme } = useTheme()
 
   const openSignIn = () => setAuthMode("signin")
   const openSignUp = () => setAuthMode("signup")
@@ -92,17 +88,6 @@ export function Header() {
             </div>
 
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="hidden sm:flex"
-              >
-                <Sun className="h-4 w-4 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-              
               <div className="hidden lg:flex items-center gap-2">
                 <Button variant="ghost" size="sm" className="gap-2" onClick={openSignIn}>
                   <LogIn className="w-4 h-4" />
@@ -162,16 +147,6 @@ export function Header() {
                 <Button size="sm" className="justify-start gap-2" onClick={openSignUp}>
                   <UserPlus className="w-4 h-4" />
                   Sign Up
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="justify-start gap-2 sm:hidden"
-                >
-                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
-                  Toggle theme
                 </Button>
               </nav>
             </motion.div>

@@ -11,7 +11,9 @@ import {
   Gift, 
   Crown, 
   Flame,
-  Search
+  Search,
+  ShoppingBag,
+  Navigation
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -34,43 +36,7 @@ const marqueeItems = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
-      {/* Marquee Effect - Brought to front */}
-      <div className="absolute top-[5vh] left-0 right-0 overflow-hidden border-b border-primary/10 z-20 bg-black/95">
-        <div className="marquee-container relative flex py-3">
-          <div className="animate-marquee whitespace-nowrap flex items-center gap-16">
-            {marqueeItems.map((item, i) => (
-              <span 
-                key={i} 
-                className="marquee-item px-6 py-3 text-sm font-semibold flex items-center gap-4 hover:scale-110 transition-transform duration-200"
-              >
-                <span className="w-6 h-6 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-orange-500 rounded-lg p-1">
-                  <item.icon className="w-full h-full text-white" />
-                </span>
-                <span className="bg-gradient-to-r from-violet-400 via-pink-500 to-orange-500 text-transparent bg-clip-text whitespace-nowrap">
-                  {item.text}
-                </span>
-              </span>
-            ))}
-          </div>
-          <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-16">
-            {marqueeItems.map((item, i) => (
-              <span 
-                key={`${i}-clone`} 
-                className="marquee-item px-6 py-3 text-sm font-semibold flex items-center gap-4 hover:scale-110 transition-transform duration-200"
-              >
-                <span className="w-6 h-6 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-orange-500 rounded-lg p-1">
-                  <item.icon className="w-full h-full text-white" />
-                </span>
-                <span className="bg-gradient-to-r from-violet-400 via-pink-500 to-orange-500 text-transparent bg-clip-text whitespace-nowrap">
-                  {item.text}
-                </span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
+    <section className="relative min-h-screen overflow-hidden bg-black pt-16">
       {/* Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-black/80 z-10" />
@@ -81,6 +47,8 @@ export function Hero() {
             muted
             playsInline
             className="absolute w-full h-full object-cover"
+            preload="auto"
+            poster="/video-poster.jpg"
           >
             <source src="/gradientback.mp4" type="video/mp4" />
           </video>
@@ -96,7 +64,7 @@ export function Hero() {
           transition={{ duration: 0.5 }}
         >
           <MotionH1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary/90 via-purple-500 to-pink-600"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary/90 via-purple-500 to-pink-600"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -114,8 +82,8 @@ export function Hero() {
             transition={{ delay: 0.3 }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-purple-500/5 to-pink-600/5 rounded-2xl blur-xl" />
-            <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-lg">
-              <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-pink-500 to-orange-500 whitespace-nowrap overflow-hidden text-ellipsis">
+            <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-lg">
+              <p className="text-base text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-pink-500 to-orange-500 whitespace-nowrap overflow-hidden text-ellipsis">
                 Find the best local deals and save money while supporting your community
               </p>
             </div>
@@ -128,7 +96,7 @@ export function Hero() {
             transition={{ delay: 0.4 }}
           >
             <div className="relative flex-1 w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <ShoppingBag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search for deals..."
@@ -136,10 +104,10 @@ export function Hero() {
               />
             </div>
             <div className="relative flex-1 w-full">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Navigation className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Location..."
+                placeholder="Enter your location..."
                 className="pl-9 pr-4 bg-background/50 backdrop-blur-sm border-primary/20"
               />
             </div>
@@ -147,12 +115,13 @@ export function Hero() {
               size="lg" 
               className="w-full sm:w-auto bg-gradient-to-r from-primary via-purple-500 to-pink-600 hover:from-primary/90 hover:via-purple-500/90 hover:to-pink-600/90"
             >
+              <Search className="w-4 h-4 mr-2" />
               Find Deals
             </Button>
           </MotionDiv>
 
           <MotionDiv
-            className="flex items-center justify-center gap-8 pt-8"
+            className="flex items-center justify-center gap-8 pt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -163,8 +132,8 @@ export function Hero() {
               { label: "Local Businesses", value: "500+" }
             ].map(({ label, value }) => (
               <div key={label} className="text-center">
-                <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-600">{value}</div>
-                <div className="text-sm text-muted-foreground">{label}</div>
+                <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-pink-600">{value}</div>
+                <div className="text-xs text-muted-foreground">{label}</div>
               </div>
             ))}
           </MotionDiv>
