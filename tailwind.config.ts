@@ -57,6 +57,9 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        "gradient-xy": "gradient-xy 15s ease infinite",
+      },
     },
   },
   plugins: [],
