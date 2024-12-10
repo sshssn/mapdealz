@@ -19,11 +19,7 @@ const MOCK_DEALS: Deal[] = [
       name: 'Pizza Express',
       rating: 4.5,
       location: {
-        address: '123 Main St, San Francisco, USA',
-        coordinates: {
-          lat: 37.7858,
-          lng: -122.4064
-        }
+        address: '123 Main St, San Francisco, USA'
       }
     },
     category: DealCategory.FOOD_DRINK,
@@ -49,11 +45,7 @@ const MOCK_DEALS: Deal[] = [
       name: 'Fashion Store',
       rating: 4.2,
       location: {
-        address: '456 Market St, San Francisco, USA',
-        coordinates: {
-          lat: 37.7868,
-          lng: -122.4074
-        }
+        address: '456 Market St, San Francisco, USA'
       }
     },
     category: DealCategory.SHOPPING,

@@ -9,7 +9,6 @@ export interface Merchant {
   rating: number
   location: {
     address: string
-    coordinates: Location
   }
 }
 
