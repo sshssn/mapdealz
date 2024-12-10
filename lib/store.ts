@@ -94,7 +94,7 @@ export const useStore = create<DealzMapStore>((set, get) => ({
 
     try {
       const dealService = DealService.getInstance()
-      const deals = await dealService.getDealsByCategory(category, userLocation)
+      const deals = await dealService.getDealsByCategory(category, userLocation || undefined)
       setDeals(deals)
     } catch (error) {
       setError('Failed to fetch deals by category')
