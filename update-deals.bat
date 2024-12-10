@@ -1,6 +1,0 @@
-@echo off
-echo Running deal scrapers...
-python main.py
-
-echo Starting Next.js application...
-npm run dev 
