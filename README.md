@@ -1,69 +1,88 @@
-# Oman Deals Scraper
+# MapDealz 🗺️💡
 
-A Python-based web scraping tool to collect deals and discounts from various Omani e-commerce and retail websites.
+## 🌟 Project Overview
 
-## Features
+MapDealz is a cutting-edge web application that revolutionizes how users discover and engage with local deals and promotions. Leveraging modern web technologies, MapDealz provides an intuitive, responsive, and visually stunning platform for finding the best offers in your area.
 
-- Scrapes deals from multiple sources (Amazon, Carrefour, etc.)
-- Extracts detailed deal information (price, discount, expiry date)
-- Categorizes deals by type (Electronics, Groceries, etc.)
-- Sorts deals by discount percentage
-- Saves results in JSON format
-- Handles dynamic content using Selenium
-- Implements ethical scraping practices
+## 🚀 Key Features
 
-## Setup
+- **Interactive Map Interface**: Explore deals geographically with a sleek, dark-themed map
+- **Multilingual Support**: Toggle between English and Arabic seamlessly
+- **Responsive Design**: Optimized for mobile and desktop experiences
+- **Real-time Deal Discovery**: Instantly view and filter local promotions
+- **Dark Mode**: Elegant, eye-friendly dark theme across the entire application
 
-1. Clone the repository:
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Mapping**: Leaflet
+- **Internationalization**: next-intl
+- **Deployment**: Netlify
+
+## 🔧 Prerequisites
+
+- Node.js (v18+)
+- npm (v10+)
+
+## 📦 Installation
+
+1. Clone the repository
 ```bash
-git clone <repository-url>
-cd oman-deals-scraper
+git clone https://github.com/sshssn/MapDealz.git
+cd MapDealz
 ```
 
-2. Create a virtual environment:
+2. Install dependencies
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+npm install
 ```
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
+3. Create a `.env.local` file with required environment variables:
+```
+NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
+NEXT_PUBLIC_GOOGLE_TRANSLATE_API_KEY=your_google_translate_key
 ```
 
-4. Install Chrome WebDriver (required for Selenium)
+## 🖥️ Development
 
-## Usage
-
-Run the main script:
+Run the development server:
 ```bash
-python main.py
+npm run dev
 ```
 
-The script will:
-1. Scrape deals from all configured sources
-2. Sort and categorize the deals
-3. Save results in the `data` directory
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Results are saved in two formats:
-- By category: `data/deals_<category>_<timestamp>.json`
-- Top deals: `data/top_deals_<timestamp>.json`
+## 🌐 Building for Production
 
-## Adding New Scrapers
+```bash
+npm run build
+```
 
-1. Create a new scraper in `scrapers/sites/`
-2. Inherit from `BaseScraper` class
-3. Implement the `scrape()` method
-4. Add the scraper to the list in `main.py`
+## 🚢 Deployment
 
-## Contributing
+The project is configured for seamless Netlify deployment. Push to the `main` branch to trigger automatic builds.
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-MIT License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## 📞 Contact
+
+Dev - [@sshssn](https://twitter.com/sshssn)
+
+Project Link: [https://github.com/sshssn/MapDealz](https://github.com/sshssn/MapDealz)
+
+---
+
+**Made with ❤️ by TheAffinityLabs **
