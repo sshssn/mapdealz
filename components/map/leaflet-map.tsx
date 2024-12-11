@@ -50,7 +50,7 @@ function LeafletMap({ deals }: Props) {
       <ZoomControl position="bottomright" />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         className="brightness-[0.7] contrast-[1.2] saturate-[0.8]"
       />
       

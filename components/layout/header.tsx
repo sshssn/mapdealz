@@ -10,7 +10,8 @@ import {
   ShoppingBag,
   LogIn,
   UserPlus,
-  X 
+  X,
+  Globe 
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -19,27 +20,28 @@ import { useScrollPosition } from "@/hooks/use-scroll-position"
 import { Logo } from "@/components/ui/logo"
 import { AuthModal } from "@/components/auth/auth-modal"
 import { MotionComponentProps } from "@/lib/motion-types"
+import { useLanguage } from "@/contexts/language-context"
 
 const MotionDiv = motion.div as React.FC<MotionComponentProps<"div">>
 
 const categories = [
   {
-    title: "Food & Drink",
+    key: 'category.food',
     href: "/category/food-drink",
     icon: Utensils
   },
   {
-    title: "Things to Do",
+    key: 'category.activities',
     href: "/category/activities",
     icon: Ticket
   },
   {
-    title: "Beauty & Spas",
+    key: 'category.beauty',
     href: "/category/beauty",
     icon: Sparkles
   },
   {
-    title: "Shopping",
+    key: 'category.shopping',
     href: "/category/shopping",
     icon: ShoppingBag
   }
@@ -50,10 +52,12 @@ export function Header() {
   const [authMode, setAuthMode] = React.useState<"signin" | "signup" | null>(null)
   const scrollPosition = useScrollPosition()
   const isScrolled = scrollPosition > 0
+  const { language, setLanguage, t, dir } = useLanguage()
 
   const openSignIn = () => setAuthMode("signin")
   const openSignUp = () => setAuthMode("signup")
   const closeAuth = () => setAuthMode(null)
+  const toggleLanguage = () => setLanguage(language === "en" ? "ar" : "en")
 
   return (
     <>
@@ -70,7 +74,7 @@ export function Header() {
           animate={{ y: 0 }}
           transition={{ duration: 0.6, type: "spring" }}
         >
-          <div className="flex h-14 items-center justify-between">
+          <div className="flex h-14 items-center justify-between" dir={dir()}>
             <div className="flex items-center gap-8">
               <Logo />
               <nav className="hidden lg:flex items-center gap-6">
@@ -81,21 +85,31 @@ export function Header() {
                     className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <category.icon className="w-4 h-4" />
-                    {category.title}
+                    {t(category.key)}
                   </Link>
                 ))}
               </nav>
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="hidden lg:flex items-center gap-2">
-                <Button variant="ghost" size="sm" className="gap-2" onClick={openSignIn}>
-                  <LogIn className="w-4 h-4" />
-                  Sign In
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hidden sm:flex items-center gap-2"
+                onClick={toggleLanguage}
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm font-medium">{language === "en" ? "العربية" : "English"}</span>
+              </Button>
+
+              <div className="hidden sm:flex items-center gap-2">
+                <Button variant="ghost" size="sm" onClick={openSignIn}>
+                  <LogIn className="w-4 h-4 mr-2" />
+                  {t('nav.signin')}
                 </Button>
-                <Button size="sm" className="gap-2" onClick={openSignUp}>
-                  <UserPlus className="w-4 h-4" />
-                  Sign Up
+                <Button size="sm" onClick={openSignUp}>
+                  <UserPlus className="w-4 h-4 mr-2" />
+                  {t('nav.signup')}
                 </Button>
               </div>
 
@@ -115,7 +129,6 @@ export function Header() {
           </div>
         </MotionDiv>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -127,6 +140,7 @@ export function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
+              dir={dir()}
             >
               <nav className="flex flex-col gap-2">
                 {categories.map((category) => (
@@ -136,17 +150,21 @@ export function Header() {
                     className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted transition-colors"
                   >
                     <category.icon className="w-4 h-4" />
-                    {category.title}
+                    {t(category.key)}
                   </Link>
                 ))}
                 <hr className="my-2" />
+                <Button variant="ghost" size="sm" className="justify-start gap-2" onClick={toggleLanguage}>
+                  <Globe className="w-4 h-4" />
+                  {language === "en" ? "العربية" : "English"}
+                </Button>
                 <Button variant="ghost" size="sm" className="justify-start gap-2" onClick={openSignIn}>
                   <LogIn className="w-4 h-4" />
-                  Sign In
+                  {t('nav.signin')}
                 </Button>
                 <Button size="sm" className="justify-start gap-2" onClick={openSignUp}>
                   <UserPlus className="w-4 h-4" />
-                  Sign Up
+                  {t('nav.signup')}
                 </Button>
               </nav>
             </motion.div>
